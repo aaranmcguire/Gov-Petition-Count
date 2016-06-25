@@ -6,41 +6,15 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <link href="css/style.css" rel="stylesheet" type="text/css">
 
-
-        <link as="script" href="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" rel="preload" >
-        <link as="script" href="js/jquery.countTo.js" rel="preload">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="content">
-               <span class="counter" data-from="0" data-to="100" data-speed="1000"></span>
+               <span class="counter" data-from="0" data-to="0" data-speed="1000"></span>
             </div>
         </div>
     </body>
-    <script type="text/javascript">
-        $('.counter').countTo({
-            formatter: function (value, options) {
-                return value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,').slice(0,-3);
-            }
-        });
-
-        function updateCount(to)
-        {
-            $('.counter').countTo({
-                from: parseInt($('.counter').html().replace(/,/g, '')),
-                to: to,
-                formatter: function (value, options) {
-                    return value.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,').slice(0,-3);
-                }
-            })
-        }
-
-        window.setInterval(function(){
-            $.getJSON("https://petition.parliament.uk/petitions/131215.json", function (data){
-                updateCount(data.data.attributes.signature_count);
-                console.log("+" + (data.data.attributes.signature_count - parseInt($('.counter').html().replace(/,/g, ''))) );
-            });
-        }, 5000);
-
-    </script>
+    <script src="js/jquery.countTo.js"></script>
+    <script src="js/app.js"></script>
 </html>
